@@ -12,8 +12,9 @@ class App extends Component{
       <Layout>
 
         <div>
-            <p> Tools,SideDrawer and backdrop </p>
-            <BurgerBuilder/>
+            <Layout>
+              <BurgerBuilder/>
+            </Layout>
         </div>
       </Layout>
     

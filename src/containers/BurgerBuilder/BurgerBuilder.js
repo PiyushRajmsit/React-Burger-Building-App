@@ -78,13 +78,20 @@ class BurgerBuilder extends Component{
             purchasable: sum > 0
         });
     }
-    updateReadyForOrder = ()=>{
-
+    updateReadyForOrder = () =>
+    {
+        const oldReadyForOrder = this.state.readyForOrder;
+        const newReadyForOrder = !oldReadyForOrder; 
         this.setState({
-            readyForOrder: true
+            readyForOrder: newReadyForOrder
         });
-        console.log(this.state);
+        console.log(this.state,newReadyForOrder);
     }
+
+    purchaseContinue = () =>{
+        alert('You are Ready to Eat!!..');
+    }
+
     render(){
 
         let disabledInfo = {
@@ -96,9 +103,12 @@ class BurgerBuilder extends Component{
         // console.log(disabledInfo);
         return(
             <Aux>
-                <Modal show = {this.state.readyForOrder}>
+                <Modal show = {this.state.readyForOrder} closed={this.updateReadyForOrder}>
                     <OrderSummary 
                     ingredient={this.state.ingredients}
+                    cancel={this.updateReadyForOrder}
+                    continue={this.purchaseContinue}
+                    price={this.state.totalPrice.toFixed(2)}
                     />
                 </Modal>
                 <Burger ingredients={this.state.ingredients} />
